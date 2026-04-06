@@ -1,70 +1,125 @@
-# Getting Started with Create React App
+# LogiEdge Billing 🧾
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A clean, dark-themed billing and invoice management dashboard built with **React.js**. Manage customers, items, and generate GST-aware invoices — all in one place.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Getting Started
 
-### `npm start`
+### 1. Clone or create the project
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```bash
+npx create-react-app logiedge-billing
+cd logiedge-billing
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 2. Install dependencies
 
-### `npm test`
+```bash
+npm install lucide-react
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 3. Add the source files
 
-### `npm run build`
+Create the following folder structure inside `src/`:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+src/
+├── components/
+│   ├── layout/
+│   │   └── Sidebar.jsx
+│   └── modules/
+│       ├── DashboardModule.jsx
+│       ├── BillingModule.jsx
+│       └── MasterModule.jsx
+├── data/
+│   └── seedData.js
+├── styles/
+│   └── tokens.js
+├── utils/
+│   └── helpers.js
+├── App.jsx
+└── index.js
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 4. Run the app
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+npm start
+```
 
-### `npm run eject`
+App will open at `http://localhost:3000`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 📦 Features
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **Dashboard** — View all generated invoices, filter by customer or invoice ID, and see a full invoice detail view
+- **New Invoice (Billing)** — 3-step invoice wizard: select customer → add items → review & generate
+- **Master Data** — Add and manage customers (with PAN & GST validation) and items
+- **GST Logic** — GST registered customers are automatically exempt; unregistered customers are charged 18% GST
+- **Session Summary** — Live count of invoices, customers, and items shown in the sidebar
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## 🛠️ Tech Stack
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+| Tech | Usage |
+|---|---|
+| React.js 18 | UI & state management |
+| lucide-react | Icons |
+| Intl API | Indian Rupee formatting |
+| Inline styles | Theming via design tokens |
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## 🎨 Design Tokens (`src/styles/tokens.js`)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+| Token | Value | Usage |
+|---|---|---|
+| `bg` | `#07090F` | App background |
+| `surface` | `#0D1117` | Sidebar, inputs |
+| `card` | `#111827` | Cards, tables |
+| `accent` | `#3B82F6` | Primary blue |
+| `green` | `#10B981` | Success, totals |
+| `amber` | `#F59E0B` | Warnings, GST |
+| `red` | `#EF4444` | Errors, delete |
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 📁 File Responsibilities
 
-### Making a Progressive Web App
+| File | Responsibility |
+|---|---|
+| `App.jsx` | Root layout, global state (customers, items, invoices) |
+| `Sidebar.jsx` | Navigation + session summary |
+| `DashboardModule.jsx` | Invoice list, filters, detail view, stat cards |
+| `BillingModule.jsx` | 3-step invoice creation wizard |
+| `MasterModule.jsx` | Customer & item CRUD with validation |
+| `seedData.js` | Pre-loaded demo customers and items |
+| `helpers.js` | `fmt()`, `nextId()`, `generateInvoiceId()` utilities |
+| `tokens.js` | Global color/style design tokens |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## 📋 GST Logic
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```
+Customer is GST Registered  →  GST = ₹0 (Exempt)
+Customer is Unregistered    →  GST = Subtotal × 18%
+Total = Subtotal + GST
+```
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 👨‍💻 Author
 
-### `npm run build` fails to minify
+**Aditya**
+B.Tech CSE — JECRC Foundation, Jaipur
+[GitHub](https://github.com) · [LinkedIn](https://linkedin.com)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+## 📄 License
+
+This project is for academic and portfolio purposes.
